@@ -12,6 +12,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
+//TODO GTB: 配置跨域时尽量避免使用通配符，应指定特定的域名
 @CrossOrigin( origins = "*", allowedHeaders = "*")
 
 @RequestMapping("/members")
@@ -23,6 +24,7 @@ public class MemberResource {
     }
 
     @PostMapping
+    //TODO GTB: 创建资源的操作应当返回新创建的资源
     public ResponseEntity<Void> createMember(@RequestBody MemberRequest request) {
         memberService.save(new Member(request));
         return ResponseEntity.status(CREATED).build();
